@@ -1,0 +1,32 @@
+syntax = "proto3";
+package v1;
+
+import "google/protobuf/timestamp.proto";
+
+message Event {
+    int64 id = 1;
+
+    string description = 2;
+
+    int64 up_votes = 3;
+
+    int64 down_votes = 4;
+
+    google.protobuf.Timestamp updated_date = 5;
+}
+
+message CreateRequest {
+    string api = 1;
+
+    Event event = 2;
+}
+
+message CreateResponse {
+    string api = 1;
+
+    int64 id = 2;
+}
+
+service EventService {
+    rpc Create(CreateRequest) returns (CreateResponse);
+}
